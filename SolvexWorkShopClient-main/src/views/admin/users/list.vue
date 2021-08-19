@@ -29,6 +29,7 @@
     </sx-buefy-table>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import { SxBuefyTableMixin } from "@/mixins";
@@ -66,3 +67,4 @@ export default class UserListComponent extends Mixins<
   }
 }
 </script>
+
