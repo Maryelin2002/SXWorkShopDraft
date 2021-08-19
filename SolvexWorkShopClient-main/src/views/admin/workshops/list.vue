@@ -22,13 +22,13 @@
 
       <template v-slot:description="{ row }">
         <p class="subtitle is-6">
-          {{ row.description | description(row.description) }}
+          {{ row.description }}
         </p>
       </template>
 
       <template v-slot:contentSupport="{ row }">
         <p class="subtitle is-6">
-          {{ row.contentSupport | contentSupport(row.contentSupport) }}
+          {{ row.contentSupport }}
         </p>
       </template>
 
@@ -55,16 +55,13 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
   }
   formatColumns() {
     let name = new BTableColumn("name", "WorkShop");
-    name.sortable = false;
     name.customTemplate = true;
 
     let description = new BTableColumn("description", "Descripción");
-    description.sortable = false;
     description.customTemplate = true;
 
     let contentSupport = new BTableColumn("contentSupport", "Contenido de apoyo");
     contentSupport.customTemplate = true;
-    contentSupport.sortable = false;
 
     this.tableConfig.insertColumns(name, description, contentSupport);
   }
