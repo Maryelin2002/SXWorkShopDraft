@@ -20,5 +20,3 @@ Vue.filter("documentTypeValue", (value: string, documentType: DocumentType) => {
         return Helpers.Filters.EmptyText();
     return documentType === DocumentType.ID ? Helpers.Filters.Cedula(value) : value
 });
-
-

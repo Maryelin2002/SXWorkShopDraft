@@ -59,12 +59,12 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
     name.customTemplate = true;
 
     let description = new BTableColumn("description", "Descripción");
-    description.sortable = true;
+    description.sortable = false;
     description.customTemplate = true;
 
     let contentSupport = new BTableColumn("contentSupport", "Contenido de apoyo");
     contentSupport.customTemplate = true;
-    contentSupport.sortable = true;
+    contentSupport.sortable = false;
 
     this.tableConfig.insertColumns(name, description, contentSupport);
   }
