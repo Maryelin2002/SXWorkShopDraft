@@ -106,8 +106,8 @@ namespace GenericApi.Model.Migrations
                     Day = table.Column<int>(nullable: false),
                     Mode = table.Column<int>(nullable: false),
                     ModeLocation = table.Column<string>(nullable: true),
-                    StartHour = table.Column<TimeSpan>(nullable: false),
-                    EndHour = table.Column<TimeSpan>(nullable: true),
+                    StartHour = table.Column<string>(nullable: true),
+                    EndHour = table.Column<string>(nullable: true),
                     WorkShopId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -158,7 +158,7 @@ namespace GenericApi.Model.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Deleted", "DeletedBy", "DeletedDate", "Dob", "DocumentType", "DocumentTypeValue", "Gender", "LastName", "MiddleName", "Name", "Password", "PhotoId", "SecondLastName", "UpdatedBy", "UpdatedDate", "UserName", "UserRole" },
-                values: new object[] { 1, null, new DateTimeOffset(new DateTime(2021, 8, 18, 15, 47, 7, 817, DateTimeKind.Unspecified).AddTicks(7104), new TimeSpan(0, 0, 0, 0, 0)), false, null, null, new DateTime(2021, 8, 18, 11, 47, 7, 817, DateTimeKind.Local).AddTicks(7627), 0, "00000000000", 0, "Admin", "Admin", "Admin", "Hola123,", null, "Admin", null, null, "Admin", 0 });
+                values: new object[] { 1, null, new DateTimeOffset(new DateTime(2021, 8, 20, 0, 4, 34, 979, DateTimeKind.Unspecified).AddTicks(1982), new TimeSpan(0, 0, 0, 0, 0)), false, null, null, new DateTime(2021, 8, 19, 20, 4, 34, 979, DateTimeKind.Local).AddTicks(2470), 0, "00000000000", 0, "Admin", "Admin", "Admin", "Hola123,", null, "Admin", null, null, "Admin", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_PhotoId",

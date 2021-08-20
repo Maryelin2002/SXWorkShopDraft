@@ -13,9 +13,17 @@ const item = {
       component: () => import("../views/admin/workshops/add.vue")
     },
     {
-        path: "edit/:id",
-        component: () => import("../views/admin/workshops/edit.vue")
-      }
+      path: "edit/:id",
+      component: () => import("../views/admin/workshops/edit.vue")
+    },
+    {
+      path: "addDay/:id",
+      component: () => import("../views/admin/workshopdays/add.vue")
+    },
+    {
+      path: "addMember/:id",
+      component: () => import("../views/admin/workshopmembers/add.vue")
+    }
   ],
 } as RouteConfig;
 

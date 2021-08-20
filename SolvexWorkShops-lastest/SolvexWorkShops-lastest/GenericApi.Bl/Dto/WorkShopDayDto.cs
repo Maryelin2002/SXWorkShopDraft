@@ -9,8 +9,8 @@ namespace GenericApi.Bl.Dto
         public WeekDay Day { get; set; }
         public WorkShopDayMode Mode { get; set; }
         public string ModeLocation { get; set; }
-        public TimeSpan StartHour { get; set; }
-        public TimeSpan? EndHour { get; set; }
+        public string StartHour { get; set; }
+        public string EndHour { get; set; }
 
         public int WorkShopId { get; set; }
     }

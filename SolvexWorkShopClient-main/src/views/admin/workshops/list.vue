@@ -15,7 +15,7 @@
                 <a class="has-text-link cursor-ban">{{ row.name }}</a>
               </b-tooltip>
             </p>
-            <p class="subtitle is-6">@{{ row.name }}</p>
+            
           </div>
         </div>
       </template>
@@ -26,10 +26,28 @@
         </p>
       </template>
 
+      <template v-slot:startDate="{ row }">
+        <p class="subtitle is-6">
+          {{ row.startDate }}
+        </p>
+      </template>
+
       <template v-slot:contentSupport="{ row }">
         <p class="subtitle is-6">
           {{ row.contentSupport }}
         </p>
+      </template>
+
+      <template v-slot:addDay="{ row }">
+        <div class="buttons is-centered" >
+          <b-button label="+"  type="is-primary" outlined @click="addDay(row.id)" />
+        </div>
+      </template>
+
+      <template v-slot:addMember="{ row }">
+        <div class="buttons is-centered">
+          <b-button label="+" type="is-primary" outlined @click="addMember(row.id)"/>
+        </div>
       </template>
 
     </sx-buefy-table>
@@ -42,7 +60,9 @@ import { SxBuefyTableMixin } from "@/mixins";
 import { BTableColumn } from "@/components/sx/sx-buefy-table/config";
 import { WorkShop } from "@/core/model";
 
-@Component
+@Component({
+
+})
 export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<WorkShop>>(SxBuefyTableMixin) {
   created() {
     this.setTableConfig();
@@ -51,19 +71,51 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
   setTableConfig() {
     this.tableConfig.controller = "WorkShop";
     this.tableConfig.aggregatable = true;
-    this.tableConfig.aggregating.title = "Listado de WorkShops";
+    this.tableConfig.aggregating.title = "Listado de Talleres";
   }
   formatColumns() {
-    let name = new BTableColumn("name", "WorkShop");
+    let name = new BTableColumn("name", "Taller");
     name.customTemplate = true;
 
     let description = new BTableColumn("description", "Descripción");
     description.customTemplate = true;
 
-    let contentSupport = new BTableColumn("contentSupport", "Contenido de apoyo");
-    contentSupport.customTemplate = true;
+    let startDate = new BTableColumn("startDate", "Fecha Inicio");
+    startDate.customTemplate = true;
 
-    this.tableConfig.insertColumns(name, description, contentSupport);
+    let addDay = new BTableColumn("addDay","Agregar Día")
+    addDay.customTemplate = true;
+    
+    let addMember = new BTableColumn("addMember","Agregar Miembro")
+    addMember.customTemplate = true;
+
+    this.tableConfig.insertColumns(name, description, startDate, addDay, addMember);
   }
+
+  data() {
+    return {
+      isImageModalActive: false,
+      isCardModalActive: false
+    }
+  }
+
+  addDay(id: number){
+    this.$router.push(
+      `${this.$router.currentRoute.path}/addDay/${id}`
+    );
+  }
+
+  addMember(id: number){
+    this.$router.push(
+      `${this.$router.currentRoute.path}/addMember/${id}`
+    );
+  }
+
+
 }
 </script>
+
+<style scoped>
+  @import "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css";
+  @import "https://unicons.iconscout.com/release/v2.1.11/css/unicons.css";
+</style>

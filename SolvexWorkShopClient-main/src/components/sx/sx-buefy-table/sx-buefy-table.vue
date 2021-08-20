@@ -341,6 +341,7 @@ export default class SxBuefyTableComponent extends Mixins(CoreMixin) {
       }
     }
   }
+
   edit(id: number, row: IBaseEntity, props: RowTable<IBaseEntity>) {
     this.$emit("edit", id, row, props);
     this.isEditing = true;
