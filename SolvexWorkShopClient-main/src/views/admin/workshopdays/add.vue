@@ -236,12 +236,12 @@ export default class WorkShopDayAddComponent extends Mixins<BaseFormAddMixin<Wor
   hourFormat: string = "12";
   currentWorkshopId: string = this.$router.currentRoute.path.substring(24)
 
-
   constructor() {
     super();
     this.controller = "WorkShopDay";
     this.model = new WorkShopDay();
     this.model.workShopId = parseInt(this.currentWorkshopId);
+    
   }
 
 }

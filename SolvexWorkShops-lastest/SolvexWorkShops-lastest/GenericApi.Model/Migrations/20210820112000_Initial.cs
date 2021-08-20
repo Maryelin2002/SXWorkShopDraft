@@ -158,7 +158,7 @@ namespace GenericApi.Model.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Deleted", "DeletedBy", "DeletedDate", "Dob", "DocumentType", "DocumentTypeValue", "Gender", "LastName", "MiddleName", "Name", "Password", "PhotoId", "SecondLastName", "UpdatedBy", "UpdatedDate", "UserName", "UserRole" },
-                values: new object[] { 1, null, new DateTimeOffset(new DateTime(2021, 8, 20, 0, 4, 34, 979, DateTimeKind.Unspecified).AddTicks(1982), new TimeSpan(0, 0, 0, 0, 0)), false, null, null, new DateTime(2021, 8, 19, 20, 4, 34, 979, DateTimeKind.Local).AddTicks(2470), 0, "00000000000", 0, "Admin", "Admin", "Admin", "Hola123,", null, "Admin", null, null, "Admin", 0 });
+                values: new object[] { 1, null, new DateTimeOffset(new DateTime(2021, 8, 20, 11, 19, 59, 723, DateTimeKind.Unspecified).AddTicks(1521), new TimeSpan(0, 0, 0, 0, 0)), false, null, null, new DateTime(2021, 8, 20, 7, 19, 59, 723, DateTimeKind.Local).AddTicks(2029), 0, "00000000000", 0, "Admin", "Admin", "Admin", "Hola123,", null, "Admin", null, null, "Admin", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_PhotoId",

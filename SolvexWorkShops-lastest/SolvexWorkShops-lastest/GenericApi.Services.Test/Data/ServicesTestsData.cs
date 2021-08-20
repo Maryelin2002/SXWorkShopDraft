@@ -51,7 +51,7 @@ namespace GenericApi.Services.Tests.Data
             EndDate = null,
             ContentSupport = "https://github.com/EmmanuelJP/GenericApis",
         };
-
+        
         public readonly WorkShopDay _day1 = new WorkShopDay
         {
             Day = 0,

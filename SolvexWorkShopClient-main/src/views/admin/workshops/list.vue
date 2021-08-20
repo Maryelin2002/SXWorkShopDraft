@@ -2,7 +2,7 @@
   <div>
     <sx-buefy-table :config="tableConfig">
 
-      <template v-slot:name="{ row }">
+      <template v-slot:name="{ row }" @click=workshopDetails(row.id)>
         <div class="media">
 
           <div class="media-left">
@@ -50,6 +50,20 @@
         </div>
       </template>
 
+      <template v-slot:detalles="{ row }">
+        <div class="buttons is-centered">
+          <b-button label="+ detalles" type="is-primary" outlined  @click="workshopDetails(row.id)"/>
+        </div>
+      </template>
+
+      <b-modal v-if="isCardModalActive === true" :width="640" scroll="keep">
+        <div class="card">
+          <div class="card-content">
+            <p>{{ selectedWorkShop.name }} / {{ selectedWorkShop.description }} / {{ selectedWorkShop.contentSupport }}</p> <br/>
+          </div>
+        </div>
+      </b-modal>
+
     </sx-buefy-table>
   </div>
 </template>
@@ -59,11 +73,16 @@ import { Component, Mixins } from "vue-property-decorator";
 import { SxBuefyTableMixin } from "@/mixins";
 import { BTableColumn } from "@/components/sx/sx-buefy-table/config";
 import { WorkShop } from "@/core/model";
+import axios from "axios";
+import settings from "@/core/utils/app-settings";
 
 @Component({
 
 })
 export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<WorkShop>>(SxBuefyTableMixin) {
+  
+
+
   created() {
     this.setTableConfig();
     this.formatColumns();
@@ -76,7 +95,7 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
   formatColumns() {
     let name = new BTableColumn("name", "Taller");
     name.customTemplate = true;
-
+    
     let description = new BTableColumn("description", "Descripción");
     description.customTemplate = true;
 
@@ -88,15 +107,18 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
     
     let addMember = new BTableColumn("addMember","Agregar Miembro")
     addMember.customTemplate = true;
+    let detalles = new BTableColumn("detalles", "Ver Detalles")
+    detalles.customTemplate = true;
 
-    this.tableConfig.insertColumns(name, description, startDate, addDay, addMember);
+    this.tableConfig.insertColumns(name, description, startDate, addDay, addMember, detalles);
   }
+  isCardModalActive: boolean = false;
+  selectedWorkShop = [];
 
-  data() {
-    return {
-      isImageModalActive: false,
-      isCardModalActive: false
-    }
+  async workshopDetails(id: number){
+    const resWorkShops = await axios.get(settings.API_URL + `api/WorkShop/${id}`);
+    this.selectedWorkShop = resWorkShops.data;
+    this.isCardModalActive = true;
   }
 
   addDay(id: number){
@@ -110,12 +132,5 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
       `${this.$router.currentRoute.path}/addMember/${id}`
     );
   }
-
-
 }
 </script>
-
-<style scoped>
-  @import "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css";
-  @import "https://unicons.iconscout.com/release/v2.1.11/css/unicons.css";
-</style>

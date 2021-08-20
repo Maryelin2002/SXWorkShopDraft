@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GenericApi.Model.Migrations
 {
     [DbContext(typeof(WorkShopContext))]
-    [Migration("20210820000435_Initial")]
+    [Migration("20210820112000_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,9 +137,9 @@ namespace GenericApi.Model.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTimeOffset(new DateTime(2021, 8, 20, 0, 4, 34, 979, DateTimeKind.Unspecified).AddTicks(1982), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedDate = new DateTimeOffset(new DateTime(2021, 8, 20, 11, 19, 59, 723, DateTimeKind.Unspecified).AddTicks(1521), new TimeSpan(0, 0, 0, 0, 0)),
                             Deleted = false,
-                            Dob = new DateTime(2021, 8, 19, 20, 4, 34, 979, DateTimeKind.Local).AddTicks(2470),
+                            Dob = new DateTime(2021, 8, 20, 7, 19, 59, 723, DateTimeKind.Local).AddTicks(2029),
                             DocumentType = 0,
                             DocumentTypeValue = "00000000000",
                             Gender = 0,
