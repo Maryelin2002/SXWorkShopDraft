@@ -1,22 +1,16 @@
 <template>
-  <div>
-    <b-collapse class="card" animation="slide" aria-id="contentIdFor">
-      <template #trigger="props">
-        <div class="card-header" role="button" aria-controls="contentIdFor">
-          <p class="card-header-title">Mis Talleres</p>
-          <a class="card-header-icon">
-            <b-icon :icon="props.open ? 'menu-down' : 'menu-up'"> </b-icon>
-          </a>
-        </div>
-      </template>
-      <div class="card-content">
-        <div class="columns">
-          <div class="column" v-for="workshop in workShops" :key="workshop.id" :value="workshop.id">
-            <p>{{ workshop.name }} / {{ workshop.description }} / {{ workshop.contentSupport }}</p> <br/>
+  <div class="workshops">
+    <p class="title">Mis Talleres</p>
+    <div class="columns">
+      <div class="column" v-for="workshop in workShops" :key="workshop.id" :value="workshop.id">
+        <div class="card">
+          <div class="card-content">
+            <p>Taller: {{ workshop.name }} / Descripción: {{ workshop.description }} / {{ workshop.contentSupport }}</p> <br/><br/>
           </div>
         </div>
+
       </div>
-    </b-collapse>
+    </div>
   </div>
 </template>
 
@@ -39,3 +33,9 @@ export default class ProfileComponent extends Mixins<
   }
 }
 </script>
+
+<style scoped>
+.workshops{
+  padding: 30px;
+}
+</style>

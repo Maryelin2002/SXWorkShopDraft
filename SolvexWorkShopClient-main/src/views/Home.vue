@@ -1,18 +1,43 @@
 <template>
-  <div class="home">
+  <div class="workshops">
+    <p class="title">Inicio</p>
+    <div class="columns">
+      <div class="column" v-for="workshop in workShops" :key="workshop.id" :value="workshop.id">
+        <div class="card">
+          <div class="card-content">
+            <p>Taller: {{ workshop.name }} / Descripción: {{ workshop.description }} / {{ workshop.contentSupport }}</p> <br/><br/>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
-@Component({
-  components: {
-    HelloWorld
+
+<script lang="ts">
+import { Component, Mixins } from "vue-property-decorator";
+import { SxBuefyTableMixin } from "@/mixins";
+import { User } from "@/core/model";
+import axios from "axios";
+import settings from "@/core/utils/app-settings";
+
+@Component
+export default class HomeComponent extends Mixins<
+  SxBuefyTableMixin<User>
+>(SxBuefyTableMixin) {
+  workShops = [];
+
+  async created(){
+    const resWorkShops = await axios.get(settings.API_URL + "api/WorkShop");
+    this.workShops = resWorkShops.data.slice(0,3);
   }
-})
-export default class Home extends Vue {
- 
 }
 </script>
+
+<style scoped>
+.workshops{
+  padding: 30px;
+}
+</style>

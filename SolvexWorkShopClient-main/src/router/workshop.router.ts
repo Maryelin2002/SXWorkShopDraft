@@ -23,6 +23,10 @@ const item = {
     {
       path: "addMember/:id",
       component: () => import("../views/admin/workshopmembers/add.vue")
+    },
+    {
+      path: "details/:id",
+      component: () => import("../views/admin/workshops/details.vue")
     }
   ],
 } as RouteConfig;

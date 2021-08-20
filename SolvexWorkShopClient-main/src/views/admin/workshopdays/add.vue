@@ -241,7 +241,6 @@ export default class WorkShopDayAddComponent extends Mixins<BaseFormAddMixin<Wor
     this.controller = "WorkShopDay";
     this.model = new WorkShopDay();
     this.model.workShopId = parseInt(this.currentWorkshopId);
-    
   }
 
 }

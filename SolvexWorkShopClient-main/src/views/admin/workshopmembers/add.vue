@@ -144,28 +144,19 @@ import settings from "@/core/utils/app-settings";
 export default class WorkShopMemberAddComponent extends Mixins<BaseFormAddMixin<WorkShopMember>>(
   BaseFormAddMixin
 ) {
-  
-  hourFormat: string = "12";
   currentWorkshopId: string = this.$router.currentRoute.path.substring(27)
-  userId: string = '';
   users = [];
 
-
-  
   async created(){
     const resUsers = await axios.get(settings.API_URL + "api/User");
-    //const resWorkShop = await axios.get(settings.API_URL + "api/workshop");
     this.users = resUsers.data;
   }
   
-
-
   constructor() {
     super();
     this.controller = "WorkShopMember";
     this.model = new WorkShopMember();
     this.model.workShopId = parseInt(this.currentWorkshopId);
-    //this.model.userId = parseInt(this.userId);
   }
 
 }

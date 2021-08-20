@@ -31,7 +31,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/user/workshops',
     name: 'WorkShops',
-    component: () => import(/* webpackChunkName: "profile" */ '../views/user/workshops.vue')
+    component: () => import(/* webpackChunkName: "workshops" */ '../views/user/workshops.vue')
   }
 ]
 

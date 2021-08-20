@@ -55,15 +55,6 @@
           <b-button label="+ detalles" type="is-primary" outlined  @click="workshopDetails(row.id)"/>
         </div>
       </template>
-
-      <b-modal v-if="isCardModalActive === true" :width="640" scroll="keep">
-        <div class="card">
-          <div class="card-content">
-            <p>{{ selectedWorkShop.name }} / {{ selectedWorkShop.description }} / {{ selectedWorkShop.contentSupport }}</p> <br/>
-          </div>
-        </div>
-      </b-modal>
-
     </sx-buefy-table>
   </div>
 </template>
@@ -73,15 +64,12 @@ import { Component, Mixins } from "vue-property-decorator";
 import { SxBuefyTableMixin } from "@/mixins";
 import { BTableColumn } from "@/components/sx/sx-buefy-table/config";
 import { WorkShop } from "@/core/model";
-import axios from "axios";
-import settings from "@/core/utils/app-settings";
+import { BTableColumnType } from "@/core/utils/enums";
 
 @Component({
 
 })
 export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<WorkShop>>(SxBuefyTableMixin) {
-  
-
 
   created() {
     this.setTableConfig();
@@ -100,7 +88,8 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
     description.customTemplate = true;
 
     let startDate = new BTableColumn("startDate", "Fecha Inicio");
-    startDate.customTemplate = true;
+    startDate.customTemplate = false;
+    startDate.type = BTableColumnType.Date;
 
     let addDay = new BTableColumn("addDay","Agregar Día")
     addDay.customTemplate = true;
@@ -112,13 +101,11 @@ export default class WorkShopListComponent extends Mixins<SxBuefyTableMixin<Work
 
     this.tableConfig.insertColumns(name, description, startDate, addDay, addMember, detalles);
   }
-  isCardModalActive: boolean = false;
-  selectedWorkShop = [];
-
+  
   async workshopDetails(id: number){
-    const resWorkShops = await axios.get(settings.API_URL + `api/WorkShop/${id}`);
-    this.selectedWorkShop = resWorkShops.data;
-    this.isCardModalActive = true;
+    this.$router.push(
+      `${this.$router.currentRoute.path}/details/${id}`
+    );
   }
 
   addDay(id: number){
